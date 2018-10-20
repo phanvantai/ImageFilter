@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProcessActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_activity_process_menu"
+        android:layout_marginTop="@dimen/padding_8"
+        android:layout_marginStart="@dimen/padding_8"
+        android:layout_marginEnd="@dimen/padding_8"
+        android:layout_marginBottom="@dimen/padding_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_activity_process_home"
+            android:src="@drawable/home"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:theme="@style/AppTheme.BlackRipple"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <ImageView
+            android:id="@+id/iv_activity_process_save"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/save"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:theme="@style/AppTheme.BlackRipple"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <ImageView
+            android:id="@+id/iv_activity_process_send"
+            android:layout_toStartOf="@id/iv_activity_process_save"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/send"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:theme="@style/AppTheme.BlackRipple"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/rl_activity_process_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ProcessActivity">
+
+        <ImageView
+            android:id="@+id/iv_content_process_image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/vp_activity_process_view_pager"
+            android:scaleType="centerCrop" />
+
+        <com.example.luckyluke.imagefilter.utils.NonSwipeableViewPager
+            android:id="@+id/vp_activity_process_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_above="@id/tl_activity_process_tabs"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_activity_process_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            app:tabGravity="fill"
+            app:tabMode="fixed" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
