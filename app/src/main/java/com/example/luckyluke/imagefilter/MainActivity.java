@@ -29,15 +29,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int SELECT_GALLERY_IMAGE = 11;
-    public static final int REQUEST_TAKE_PHOTO = 12;
+    private static final int SELECT_GALLERY_IMAGE = 11;
+    private static final int REQUEST_TAKE_PHOTO = 12;
+    private static final String AUTHORITY = "com.example.luckyluke.imagefilter";
 
     ImageView mCamera, mPhoto;
-    Bitmap mChooseBitmap;
-    Uri mImageUri;
 
     String mCurrentPhotoPath;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                 // Continue only if the File was successfully created
                                 if (photoFile != null) {
                                     Uri photoURI = FileProvider.getUriForFile(getApplicationContext(),
-                                            "com.example.luckyluke.imagefilter",
+                                            AUTHORITY,
                                             photoFile);
                                     mIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                                     startActivityForResult(mIntent, REQUEST_TAKE_PHOTO);
@@ -149,19 +147,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_GALLERY_IMAGE) {
-                Bitmap mBitmap = BitmapUtils.getBitmapFromGallery(this, data.getData(), 800, 800);
+                Bitmap bitmapFromGallery = BitmapUtils.getBitmapFromGallery(this, data.getData(), 800, 800);
 
-                mChooseBitmap = mBitmap.copy(Bitmap.Config.ARGB_8888, true);
-                BitmapHelper.getInstance().setBitmap(mChooseBitmap);
-                mBitmap.recycle();
+                Bitmap bitmap = bitmapFromGallery.copy(Bitmap.Config.ARGB_8888, true);
+                BitmapHelper.getInstance().setBitmap(bitmap);
+                bitmapFromGallery.recycle();
             }
 
             if (requestCode == REQUEST_TAKE_PHOTO) {
                 Bitmap mBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                 //Bitmap mBitmap = BitmapUtils.getBitmapFromGallery(this, mImageUri, 800, 800);
 
-                mChooseBitmap = mBitmap.copy(Bitmap.Config.ARGB_8888, true);
-                BitmapHelper.getInstance().setBitmap(mChooseBitmap);
+                Bitmap bitmap = mBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                BitmapHelper.getInstance().setBitmap(bitmap);
                 mBitmap.recycle();
             }
 
