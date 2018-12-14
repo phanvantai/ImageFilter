@@ -220,7 +220,7 @@ public class ProcessActivity extends AppCompatActivity
         contrastFinal = 1.0f;
     }
 
-    // Share image_dark to other apps
+    // Share image to other apps
     private void shareImage() {
 
         // save bitmap to cache directory
@@ -228,7 +228,7 @@ public class ProcessActivity extends AppCompatActivity
 
             File cachePath = new File(getApplicationContext().getCacheDir(), "images");
             cachePath.mkdirs(); // don't forget to make the directory
-            FileOutputStream stream = new FileOutputStream(cachePath + "/image_dark.jpeg"); // overwrites this image_dark every time
+            FileOutputStream stream = new FileOutputStream(cachePath + "/image.jpeg"); // overwrites this image_dark every time
             finalImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             stream.close();
 
@@ -237,23 +237,27 @@ public class ProcessActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        // Share image_dark
-        File imagePath = new File(getApplicationContext().getCacheDir(), "images");
-        File newFile = new File(imagePath, "image_dark.jpeg");
-        Uri contentUri = FileProvider.getUriForFile(getApplicationContext(),
-                "com.example.luckyluke.imagefilter", newFile);
-
-        if (contentUri != null) {
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
-            shareIntent.setDataAndType(contentUri, getContentResolver().getType(contentUri));
-            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-            startActivity(Intent.createChooser(shareIntent, "Share image to"));
-        }
+        // Share image
+        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/jpg");
+        final File photoFile = new File(getFilesDir(), "foo.jpg");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(photoFile));
+        startActivity(Intent.createChooser(shareIntent, "Share image using"));
+//        File imagePath = new File(getApplicationContext().getCacheDir(), "images");
+//        File newFile = new File(imagePath, "image.jpeg");
+//        Uri contentUri = Uri.fromFile(newFile);
+//
+//        if (contentUri != null) {
+//            Intent shareIntent = new Intent();
+//            shareIntent.setAction(Intent.ACTION_SEND);
+//            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
+//            shareIntent.setDataAndType(contentUri, getContentResolver().getType(contentUri));
+//            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+//            startActivity(Intent.createChooser(shareIntent, "Share image to"));
+//        }
     }
 
-    // Save image_dark to gallery (***.JPEG)
+    // Save image to gallery (***.JPEG)
     private void saveImageToGallery() {
         Dexter.withActivity(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
