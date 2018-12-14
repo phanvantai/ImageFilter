@@ -46,6 +46,19 @@ public class BitmapUtils {
         return BitmapFactory.decodeFile(picturePath, options);
     }
 
+    public static Bitmap getBitmapFromCamera(Context context, String picturePath, int width, int height) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(picturePath, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, width, height);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(picturePath, options);
+    }
+
     private static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image_dark

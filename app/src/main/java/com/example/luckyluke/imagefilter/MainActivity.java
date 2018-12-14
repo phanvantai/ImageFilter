@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (requestCode == REQUEST_TAKE_PHOTO) {
-                Bitmap mBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
-                //Bitmap mBitmap = BitmapUtils.getBitmapFromGallery(this, mImageUri, 800, 800);
+                //Bitmap mBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+                Bitmap mBitmap = BitmapUtils.getBitmapFromCamera(this, mCurrentPhotoPath, 800, 800);
 
                 Bitmap bitmap = mBitmap.copy(Bitmap.Config.ARGB_8888, true);
                 BitmapHelper.getInstance().setBitmap(bitmap);

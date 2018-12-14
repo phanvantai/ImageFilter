@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/sky"
     tools:context=".MainActivity">
 
     <TextView
@@ -11,7 +11,6 @@
         android:text="@string/image_filter"
         android:textStyle="bold"
         android:textSize="40sp"
-        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
@@ -31,7 +30,7 @@
             android:layout_height="100dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/todo"
-            android:src="@drawable/image_dark"
+            android:src="@drawable/image"
             android:theme="@style/AppTheme.WhiteRipple" />
 
         <TextView
@@ -42,7 +41,6 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:text="@string/image"
-            android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -62,7 +60,7 @@
             android:layout_height="100dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
-            android:src="@drawable/camera_dark"
+            android:src="@drawable/camera"
             android:theme="@style/AppTheme.WhiteRipple"
             android:contentDescription="@string/todo" />
 
@@ -74,7 +72,6 @@
             android:layout_below="@id/iv_activity_main_camera"
             android:layout_centerHorizontal="true"
             android:text="@string/camera"
-            android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 

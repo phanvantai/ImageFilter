@@ -5,7 +5,7 @@ android {
         release {
             keyAlias 'mykey'
             keyPassword '123456'
-            storeFile file('/home/luckyluke146/keystore/MyKeystore.jks')
+            storeFile file('/home/luckyluke/keystore/MyKeystore.jks')
             storePassword 'phantai146'
         }
     }
